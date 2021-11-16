@@ -1,11 +1,6 @@
 import React from "react";
-import { TodoCounter } from '../TodoCounter/index.js';
-import { TodoList } from '../TodoList/index.js';
-import { TodoItem } from '../TodoItem/index.js';
-import { TodoSearch } from '../TodoSearch/index.js';
-import { CreateTodoButton } from '../CreateTodoButton/index.js';
+import { AppUI } from './AppUI';
 
-//import './App.css';
 const defaultTodos = [
   { text: 'Cortar Cebolla', completed: true },
   { text: 'Tomar el curso de intro a React', completed: true },
@@ -47,31 +42,15 @@ function App() {
   }
 
   return (
-    <React.Fragment>  {/*renderiza una etiqueta invisible para envolver a todos los componentes*/}
-      <TodoCounter
-        total={totalTodos}
-        completed={completedTodos}
-      />
-      <TodoSearch
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-      />
-
-      <TodoList>
-        {searchedTodos.map(todo => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-          />
-        ))}
-      </TodoList>
-
-      <CreateTodoButton />
-
-    </React.Fragment>
+    <AppUI
+      totalTodos={totalTodos}
+      completedTodos={completedTodos}
+      searchValue={searchValue}
+      setSearchValue={setSearchValue}
+      searchedTodos={searchedTodos}
+      completeTodo={completeTodo}
+      deleteTodo={deleteTodo}
+    />
   );
 }
 
